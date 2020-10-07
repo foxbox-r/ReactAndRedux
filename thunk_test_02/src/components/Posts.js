@@ -22,21 +22,12 @@ function Posts({onGetPosts,onGetPostById,post,posts}){
         }
     }
 
-    const getPosts = ()=>{
-        if(posts.loading) return <h1>laoding...</h1>
-        else {
-            if(posts.data !== null && posts.data !== undefined )
-            return posts.data.map(post=><li key={post.id}>{post.title}</li>);
-    }}
-
     return (
         <div>
-            <button onClick={onGetPosts}>get posts</button><br/>
             <input value={value} type="number" placeholder="inser id you find" onChange={onChange}/><br/>
             <button onClick={()=>onGetPostById(value)}>get post</button>
             <hr/>
             {isLoading()}
-            {getPosts()}
         </div>
     )
 }
