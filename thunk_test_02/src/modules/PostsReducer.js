@@ -1,16 +1,9 @@
 import * as postAPI from "../api/posts";
+import {reducerUtils} from "../lib/reducerUtils"
 
 const initialState = {
-    posts:{
-        data:[],
-        error:null,
-        loading:false,
-    },
-    post:{
-        data:null,
-        error:null,
-        loading:false,
-    }
+    posts:reducerUtils.initial(),
+    post:reducerUtils.initial(),
 };
 
 const GET_POSTS = "post/GET_POSTS";
@@ -58,52 +51,32 @@ export default function PostsReducer(state=initialState,action){
         case GET_POSTS:
             return {
                 ...state,
-                posts:{
-                    ...state.posts,
-                    loading:true,
-                }
+                posts:reducerUtils.loading()
             }
         case GET_POSTS_SUCCESS:
             return {
                 ...state,
-                posts:{
-                    ...state.posts,
-                    data:action.posts,
-                    loading:false,
-                }
+                posts:reducerUtils.success(action.posts)
             }
         case GET_POSTS_ERROR:
             return {
                 ...state,
-                posts:{
-                    ...state.posts,
-                    error:action.error,
-                }
+                posts:reducerUtils.error(action.error)
             }
         case GET_POST:
             return {
                 ...state,
-                post:{
-                    ...state.post,
-                    loading:true,
-                }
+                post:reducerUtils.loading()
             }
         case GET_POST_SUCCESS:
             return {
                 ...state,
-                post:{
-                    ...state.post,
-                    data:action.post,
-                    loading:false,
-                }
+                post:reducerUtils.success(action.post)
             }
         case GET_POST_ERROR:
             return {
                 ...state,
-                post:{
-                    ...state.post,
-                    error:action.error,
-                }
+                post:reducerUtils.error(action.error)
             }
         default:
             return state;

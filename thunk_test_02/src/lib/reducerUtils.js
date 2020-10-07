@@ -1,0 +1,22 @@
+export const reducerUtils = {
+    initial:(initData=null)=>({
+        data:initData,
+        loading:false,
+        error:null
+    }),
+    loading:()=>({
+        data:null,
+        loading:true,
+        error:null,
+    }),
+    success:(data)=>({
+        data,
+        loading:false,
+        error:null,
+    }),
+    error:error=>({
+        error,
+        data:null,
+        loading:false,
+    })
+}
