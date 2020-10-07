@@ -1,5 +1,6 @@
 import * as postAPI from "../api/posts";
 import {reducerUtils} from "../lib/reducerUtils"
+import {createPromiseThunk} from "../lib/thunkCreator"
 
 const initialState = {
     posts:reducerUtils.initial(),
@@ -14,37 +15,8 @@ const GET_POST = "post/GET_POST";
 const GET_POST_SUCCESS = "post/GET_POST_SUCCESS";
 const GET_POST_ERROR = "post/GET_POST_ERROR";
 
-export const getPosts = () => async dispatch =>{
-    dispatch({type:GET_POSTS});
-    try{
-        const posts = await postAPI.getPosts();
-        dispatch({
-            type:GET_POSTS_SUCCESS,
-            posts,
-        })
-    } catch(e){
-        dispatch({
-            type:GET_POSTS_ERROR,
-            error:e
-        })
-    }
-}
-
-export const getPostById = (id) => async dispatch =>{
-    dispatch({type:GET_POST});
-    try{
-        const post = await postAPI.getPostById(id);
-        dispatch({
-            type:GET_POST_SUCCESS,
-            post,
-        })
-    } catch(e){
-        dispatch({
-            type:GET_POST_ERROR,
-            error:e
-        })
-    }
-}
+export const getPosts = createPromiseThunk(GET_POSTS,postAPI.getPosts);
+export const getPostById = createPromiseThunk(GET_POST,postAPI.getPostById);
 
 export default function PostsReducer(state=initialState,action){
     switch(action.type){
@@ -56,12 +28,12 @@ export default function PostsReducer(state=initialState,action){
         case GET_POSTS_SUCCESS:
             return {
                 ...state,
-                posts:reducerUtils.success(action.posts)
+                posts:reducerUtils.success(action.payload)
             }
         case GET_POSTS_ERROR:
             return {
                 ...state,
-                posts:reducerUtils.error(action.error)
+                posts:reducerUtils.error(action.payload)
             }
         case GET_POST:
             return {
@@ -71,12 +43,12 @@ export default function PostsReducer(state=initialState,action){
         case GET_POST_SUCCESS:
             return {
                 ...state,
-                post:reducerUtils.success(action.post)
+                post:reducerUtils.success(action.payload)
             }
         case GET_POST_ERROR:
             return {
                 ...state,
-                post:reducerUtils.error(action.error)
+                post:reducerUtils.error(action.payload)
             }
         default:
             return state;
