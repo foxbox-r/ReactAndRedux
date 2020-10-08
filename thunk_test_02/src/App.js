@@ -1,14 +1,12 @@
 import React from 'react';
-import './App.css';
-import PostsContainer from "./containers/PostsContianer"
-import PostListContainer from "./containers/PostListContainer"
-
+import PostPage from "./pages/PostPage"
+import PostListPage from "./pages/PostListPage"
+import {Route} from "react-router-dom"
 function App() {
   return (
     <div className="App">
-     <h1>hi</h1>
-     <PostsContainer />
-     <PostListContainer />
+      <Route path="/" component={PostListPage} exact />
+      <Route path="/:id" component={PostPage} />
     </div>
   );
 }
