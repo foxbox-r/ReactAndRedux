@@ -1,0 +1,36 @@
+*{margin:0;padding:0;box-sizing:border-box;}
+a{color:darkblue;text-decoration:none;}
+
+.todo_list_component{border:2px solid black;width:300px;position:fixed;top:0;left:-100%;transition:all 0.5s;background:white;}
+.todo_list_component .ul_todoList{}
+.todo_list_component .ul_todoList li{border:1px solid black;background: orange;list-style:none;}
+.todo_list_component .ul_todoList li input[type="checkbox"]{display:none;}
+.todo_list_component .ul_todoList li input[type="checkbox"]+label{width:100%;display:inline-block;cursor:pointer;}
+
+.todo_list_component .ul_todoList li input[type="checkbox"]:checked~.detail_desc{height:30px;}
+.todo_list_component .ul_todoList li .detail_desc{background:yellowgreen;height:0px;overflow:hidden;transition:all .25s ease;}
+.SlideBar_component{position:relative;}
+.SlideBar_component #slide_bar_checkbox{display:none;}
+.SlideBar_component #slide_bar_checkbox+label{position:fixed;top:0;left:-100%;transition:all .25s;width:100%;height:100%;background:rgba(0,0,0,0.8);}
+.SlideBar_component #slide_bar_checkbox:checked+label{left:0;}
+.SlideBar_component #slide_bar_checkbox:checked~.todo_list_component{left:0;}
+
+.SlideBar_component .hamberger{position:fixed;width:50px;background:transparent;height:50px;right:0;}
+.SlideBar_component .hamberger span{border-radius:3px;display:inline-block;background:black;height:3px;width:100%;position:absolute;transform:translateY(-50%);transition:all .25s;}
+.SlideBar_component .hamberger span:nth-child(1){top:10%;}
+.SlideBar_component .hamberger span:nth-child(2){top:50%;}
+.SlideBar_component .hamberger span:nth-child(3){top:90%;}
+.SlideBar_component .hamberger:hover{}
+.SlideBar_component .hamberger:hover span:nth-child(1){top:50%;transform: rotate(45deg);}
+.SlideBar_component .hamberger:hover span:nth-child(2){top:50%;opacity:0;}
+.SlideBar_component .hamberger:hover span:nth-child(3){top:50%;transform: rotate(-45deg);}
+
+
+
+
+
+
+
+
+
+
