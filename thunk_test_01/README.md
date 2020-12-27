@@ -1,8 +1,8 @@
 #thunk란?
-thunk는 디스패치에 전달되는 액션이 타입이 객체가 아니라 함수일때 그 함수가 실해되는데 그함수가 thunk함수다.
+thunk는 디스패치에 전달되는 액션 타입이 객체가 아니라 함수일때 그 함수가 실해되는데 그함수가 thunk함수다.
 
 ```
-const middleWare = store => next => action =>
+const thunkMiddleWare = store => next => action =>
   typeof action === 'function'
     ? action(store.dispatch, store.getState)
     : next(action)
